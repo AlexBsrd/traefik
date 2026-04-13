@@ -1,0 +1,25 @@
+http:
+  routers:
+    shinysmile:
+      rule: "Host(`shinysmile.fr`) || Host(`www.shinysmile.fr`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+      service: shinysmile
+    shinysmile-api:
+      rule: "(Host(`shinysmile.fr`) || Host(`www.shinysmile.fr`)) && PathPrefix(`/api`)"
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+      service: shinysmile-api
+  services:
+    shinysmile:
+      loadBalancer:
+        servers:
+          - url: "http://dentalcare-app:80"
+    shinysmile-api:
+      loadBalancer:
+        servers:
+          - url: "http://dentalcare-api:3001"
