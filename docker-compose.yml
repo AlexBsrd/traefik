@@ -19,6 +19,7 @@ services:
       - --accesslog.filepath=/var/log/traefik/access.log
       - --accesslog.format=json
       - --accesslog.bufferingsize=100
+      - --accesslog.fields.headers.defaultmode=keep
     ports:
       - "80:80"
       - "443:443"
