@@ -18,8 +18,8 @@ http:
     shinysmile:
       loadBalancer:
         servers:
-          - url: "http://dentalcare-app:80"
+          - url: "http://shinysmile-app:80"
     shinysmile-api:
       loadBalancer:
         servers:
-          - url: "http://dentalcare-api:3001"
+          - url: "http://shinysmile-api:3001"
