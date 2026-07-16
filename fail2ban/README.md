@@ -13,8 +13,10 @@ les access logs Traefik.
   dédiée `f2b-<name>` et la hook en tête de `DOCKER-USER`. Les bans sont
   insérés dans cette sous-chaîne uniquement, pour cohabiter proprement avec
   `ufw-docker` (qui écrit aussi dans `DOCKER-USER`).
-- **Jail** (`jail.d/traefik-scrapers.conf`) : 2 tentatives en 10 min → ban
-  24h. Les bots scannent plusieurs paths d'un coup, 2 suffit.
+- **Jail** (`jail.d/traefik-scrapers.conf`) : 1 tentative → ban 24h. Un
+  utilisateur légitime ne tape pas `/.env` ni `/wp-login.php` ; un seul hit
+  sur ces paths suffit à qualifier un scrapeur. `maxretry=1` attrape aussi
+  les scans distribués (plusieurs IPs hit un path unique chacune).
 
 ## Installation
 
