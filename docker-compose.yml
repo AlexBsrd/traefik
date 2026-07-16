@@ -29,7 +29,8 @@ services:
       - ./dynamic:/etc/traefik/dynamic:ro
       - traefik-logs:/var/log/traefik
     networks:
-      - proxy
+      proxy:
+        ipv4_address: 172.20.0.254
 
 volumes:
   letsencrypt:
