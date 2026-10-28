@@ -1,0 +1,18 @@
+# Bloque xmlrpc.php sur tous les sites (brute-force WordPress via system.multicall).
+# ponytail: ipAllowList sans IP autorisée = 403 pour tout le monde, Traefik n'a pas de middleware "deny".
+http:
+  routers:
+    block-xmlrpc:
+      rule: "Path(`/xmlrpc.php`)"
+      priority: 10000
+      entryPoints:
+        - websecure
+      tls: {}
+      middlewares:
+        - deny-all
+      service: noop@internal
+  middlewares:
+    deny-all:
+      ipAllowList:
+        sourceRange:
+          - "127.0.0.1/32"
