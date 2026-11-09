@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#070B14">
+<title>Site indisponible · bsrd.fr</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<!-- Thème "Nuit en altitude" repris de ~/dev/portfolio/styles.css. Page autonome : servie pour n'importe quel domaine, sans asset local. -->
+<style>
+  :root {
+    color-scheme: light dark;
+    --night-0: light-dark(#FBFDFF, #070B14);
+    --night-1: light-dark(#EFF4FA, #0B101C);
+    --snow: light-dark(#16202E, #EDF1F8);
+    --mist: light-dark(#4C5B70, #97A3B8);
+    --dawn: light-dark(#AC5018, #E8A16E);
+    --dawn-bright: light-dark(#9C4712, #F0B285);
+    --ice: light-dark(#33689E, #9CC3E8);
+    --hairline: light-dark(rgba(22, 32, 46, 0.14), rgba(151, 163, 184, 0.16));
+    --border-ui: light-dark(rgba(22, 32, 46, 0.55), rgba(151, 163, 184, 0.6));
+    --star-color: light-dark(transparent, #EDF1F8);
+    --glow-dawn: light-dark(rgba(172, 80, 24, 0.16), rgba(232, 161, 110, 0.22));
+    --glow-dawn-strong: light-dark(rgba(172, 80, 24, 0.26), rgba(232, 161, 110, 0.32));
+    --glow-dot: light-dark(rgba(172, 80, 24, 0.5), rgba(232, 161, 110, 0.8));
+    --sky-warm: light-dark(rgba(172, 80, 24, 0.07), rgba(232, 161, 110, 0.07));
+    --sky-ice: light-dark(rgba(51, 104, 158, 0.09), rgba(156, 195, 232, 0.05));
+    --font-display: 'Clash Display', 'Helvetica Neue', sans-serif;
+    --font-body: 'Satoshi', 'Helvetica Neue', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    --gutter: clamp(16px, 5vw, 2.5rem);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column;
+    font: 400 17px/1.7 var(--font-body);
+    color: var(--snow);
+    background:
+      radial-gradient(ellipse 80% 55% at 72% 88%, var(--sky-warm), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 25% 10%, var(--sky-ice), transparent 65%),
+      linear-gradient(to bottom, var(--night-0), var(--night-1));
+    background-color: var(--night-1);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background-color: var(--dawn); color: var(--night-0); }
+  :focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; border-radius: 2px; }
+
+  .stars { position: fixed; inset: 0 0 30% 0; pointer-events: none; }
+  .star { position: absolute; border-radius: 50%; background: var(--star-color);
+          opacity: var(--o, .4); animation: twinkle 4s ease-in-out infinite; }
+  @keyframes twinkle { 50% { opacity: calc(var(--o, .4) * .25); } }
+
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center;
+         width: 100%; max-width: 760px; margin: 0 auto; padding: 6rem var(--gutter) 3rem; position: relative; z-index: 1; }
+  .mono { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
+  .coords { color: var(--ice); margin-bottom: 2rem; overflow-wrap: anywhere; }
+  h1 { font: 600 clamp(2.6rem, 8vw, 5rem)/1 var(--font-display); letter-spacing: -.02em; margin-bottom: 2rem; }
+  h1 span { display: block; overflow: hidden; }
+  h1 span > span { transform: translateY(110%); animation: lineUp 1s var(--ease) .15s forwards; }
+  h1 span:nth-child(2) > span { animation-delay: .28s; color: var(--dawn); }
+  @keyframes lineUp { to { transform: none; } }
+  p.lead { color: var(--mist); font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.75; max-width: 480px; margin-bottom: 2rem; text-wrap: pretty; }
+  .avail { display: flex; align-items: center; gap: .6rem; color: var(--mist); letter-spacing: .12em; margin-bottom: 1rem; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dawn); box-shadow: 0 0 8px var(--glow-dot); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .35; } }
+  .actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .btn { display: inline-block; font: 500 .82rem/1 var(--font-body); letter-spacing: .05em; text-transform: uppercase; text-decoration: none;
+         padding: 1rem 2rem; border: 1px solid transparent; border-radius: 6px; cursor: pointer;
+         transition: background-color .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease); }
+  .btn:active { transform: scale(.98); }
+  .btn--primary { background: var(--dawn); border-color: var(--dawn); color: var(--night-0); font-weight: 700; box-shadow: 0 0 32px var(--glow-dawn); }
+  .btn--primary:hover { background: var(--dawn-bright); border-color: var(--dawn-bright); box-shadow: 0 0 42px var(--glow-dawn-strong); }
+  .btn--ghost { background: transparent; color: var(--snow); border-color: var(--border-ui); }
+  .btn--ghost:hover { border-color: var(--snow); }
+
+  .ridge { position: relative; }
+  .ridge svg { display: block; width: 100%; height: clamp(90px, 16vh, 170px); overflow: visible; }
+  .ridge-line { stroke: var(--dawn); stroke-width: 1.5; clip-path: inset(0 100% 0 0); animation: wipe 2.6s var(--ease) .5s forwards; }
+  /* ponytail: le tracé s'arrête au milieu, comme un coureur au ravito ; la suite reste en pointillés glacier */
+  .ridge-rest { stroke: var(--ice); stroke-opacity: .35; stroke-width: 1; stroke-dasharray: 4 6; }
+  .ridge-echo { stroke: var(--ice); stroke-opacity: .12; stroke-width: 1; transform: translateY(8px); }
+  @keyframes wipe { to { clip-path: inset(0 52% 0 0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0s !important; animation-delay: 0s !important; }
+  }
+  @media (max-width: 520px) { .btn { flex: 1 1 100%; text-align: center; } }
+</style>
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+<main>
+  <p class="mono coords" id="where">Service indisponible</p>
+  <h1><span><span>Pause</span></span><span><span>au ravito.</span></span></h1>
+  <p class="lead">Ce site est en maintenance ou en train de redémarrer. Il reprend la course dans quelques minutes.</p>
+  <p class="mono avail"><span class="dot" aria-hidden="true"></span>Ravitaillement en cours</p>
+  <div class="actions">
+    <a class="btn btn--primary" href="" onclick="location.reload(); return false;">Réessayer</a>
+    <a class="btn btn--ghost" href="https://bsrd.fr">Retour à bsrd.fr</a>
+  </div>
+</main>
+<div class="ridge" aria-hidden="true">
+  <svg viewBox="0 0 1000 100" preserveAspectRatio="none">
+    <path id="r" vector-effect="non-scaling-stroke" fill="none" d="M0.0,88.3 L13.9,88.6 L26.0,89.7 L40.4,83.8 L53.3,89.8 L59.6,87.2 L62.7,82.7 L67.5,78.7 L69.8,74.3 L72.8,69.9 L75.1,65.5 L78.1,61.1 L81.4,57.1 L85.4,53.9 L90.7,50.2 L97.1,52.7 L100.7,60.3 L105.3,66.7 L108.9,73.7 L113.7,78.3 L118.0,85.4 L121.4,91.8 L126.2,97.0 L132.2,99.7 L139.6,98.4 L145.5,97.3 L148.8,93.1 L153.0,91.9 L160.4,92.2 L163.5,89.8 L169.3,88.8 L174.8,87.0 L185.6,82.3 L191.6,82.1 L200.9,81.6 L210.0,79.9 L213.3,75.9 L216.7,72.0 L220.1,68.2 L222.7,64.4 L227.8,62.0 L232.3,58.9 L234.6,55.2 L236.7,52.0 L239.7,46.9 L242.8,44.0 L246.4,40.8 L247.9,37.5 L251.2,34.3 L253.0,31.0 L254.8,27.4 L256.7,24.1 L259.2,20.8 L262.7,19.1 L265.6,17.4 L268.3,17.0 L272.1,22.3 L275.9,27.1 L278.7,33.3 L282.3,38.8 L286.1,44.6 L289.3,50.7 L294.0,55.8 L297.5,62.1 L302.9,61.9 L307.6,58.3 L312.8,57.7 L318.0,54.4 L320.8,51.0 L323.9,48.6 L328.5,50.6 L332.3,47.5 L336.3,45.0 L339.0,41.7 L341.4,38.6 L343.7,35.4 L346.6,32.7 L349.0,29.2 L351.3,25.7 L353.8,22.0 L356.3,18.6 L359.3,15.0 L362.9,18.0 L365.7,24.1 L373.5,31.0 L381.8,35.9 L385.6,41.6 L394.8,42.0 L397.4,38.4 L399.4,34.9 L401.4,31.9 L403.1,28.5 L405.3,25.0 L407.4,22.0 L410.1,18.9 L412.7,21.5 L416.7,23.0 L421.7,25.9 L426.0,31.0 L431.4,34.1 L435.2,40.2 L441.9,48.2 L452.0,65.1 L461.8,80.1 L468.1,80.6 L472.4,77.5 L476.2,74.0 L479.4,70.4 L482.2,67.0 L484.4,63.7 L486.2,59.9 L487.9,56.2 L489.7,52.8 L491.3,48.9 L493.0,45.6 L495.0,42.2 L496.8,39.7 L500.5,39.7 L507.0,41.8 L512.1,41.4 L516.4,42.0 L520.9,41.9 L526.5,39.7 L530.0,40.7 L534.7,43.2 L538.1,40.8 L540.0,37.6 L544.6,39.0 L547.4,36.4 L552.2,36.9 L557.4,37.5 L562.4,40.3 L566.1,45.6 L569.1,51.0 L572.1,49.5 L573.9,45.8 L575.8,42.8 L579.9,40.6 L582.0,37.1 L584.1,33.6 L585.7,30.3 L587.6,27.1 L589.6,24.2 L590.9,21.0 L592.4,17.5 L594.3,14.3 L597.7,15.2 L602.0,19.4 L605.9,24.6 L610.8,27.9 L614.4,33.9 L619.1,38.7 L623.2,42.4 L627.0,40.5 L631.0,45.4 L634.4,51.4 L637.9,56.7 L643.4,58.6 L650.8,60.0 L657.2,62.8 L663.2,65.4 L668.6,68.6 L675.2,71.9 L678.9,70.4 L683.5,74.3 L690.4,77.2 L696.0,81.0 L702.3,84.4 L708.2,87.3 L712.2,84.9 L714.7,81.6 L717.9,78.2 L720.4,74.5 L723.7,72.2 L726.4,69.8 L729.9,67.4 L734.9,66.3 L741.9,65.2 L748.1,69.0 L754.6,71.5 L758.7,73.7 L764.5,71.1 L767.9,67.7 L769.9,64.1 L771.8,60.6 L774.0,59.3 L776.1,56.6 L777.8,53.0 L779.5,49.4 L781.4,45.9 L785.1,42.8 L788.1,39.9 L791.1,38.0 L794.7,43.3 L798.3,46.9 L802.2,52.0 L807.0,57.3 L811.2,61.6 L816.8,63.6 L820.2,68.3 L823.1,74.0 L828.0,75.9 L834.9,73.6 L837.3,70.4 L839.1,66.8 L840.4,62.8 L841.8,58.8 L843.3,54.8 L844.9,50.6 L846.5,47.1 L848.1,43.8 L850.2,40.8 L853.3,38.0 L857.7,36.7 L861.7,42.1 L865.1,47.8 L869.2,51.7 L874.7,51.7 L879.2,56.8 L882.3,62.5 L884.9,68.4 L887.6,73.7 L891.7,77.1 L897.5,76.6 L903.3,74.5 L909.0,71.4 L913.5,68.9 L919.3,67.7 L923.7,67.3 L925.7,64.1 L927.6,60.6 L929.3,57.4 L931.4,54.3 L934.3,58.7 L936.8,63.8 L939.3,66.8 L942.6,64.3 L946.2,62.3 L949.9,60.0 L951.7,56.6 L954.0,53.0 L956.1,50.0 L958.4,46.8 L961.0,47.2 L964.5,52.9 L968.3,57.0 L971.9,62.0 L974.2,67.1 L978.5,71.4 L982.9,75.8 L987.5,80.8 L992.5,86.0 L998.3,88.1 L1000.2,88.2"/>
+    <use href="#r" class="ridge-echo"/>
+    <use href="#r" class="ridge-rest"/>
+    <use href="#r" class="ridge-line"/>
+  </svg>
+</div>
+<script>
+  // Domaine demandé dans la ligne mono, étoiles comme sur bsrd.fr
+  if (location.hostname) document.getElementById('where').textContent = location.hostname + '  ·  Service indisponible';
+  var box = document.querySelector('.stars');
+  for (var i = 0; i < 70; i++) {
+    var s = document.createElement('span'), z = (Math.random() * 1.6 + .6).toFixed(1) + 'px';
+    s.className = 'star'; s.style.width = s.style.height = z;
+    s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+    s.style.setProperty('--o', (.2 + Math.random() * .5).toFixed(2));
+    box.appendChild(s);
+  }
+</script>
+</body>
+</html>

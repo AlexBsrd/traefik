@@ -18,6 +18,7 @@ services:
       - --providers.file.watch=true
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.http.middlewares=errorpages@file,security-headers@file,compress@file
       - --entrypoints.web.http.redirections.entryPoint.to=websecure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
       - --certificatesresolvers.letsencrypt.acme.email=alexbroussard@hotmail.fr
@@ -40,6 +41,17 @@ services:
     networks:
       proxy:
         ipv4_address: 172.20.0.254
+
+  # Page "site indisponible" servie par Traefik (voir dynamic/errorpage.yml)
+  errorpage:
+    image: nginx:alpine
+    container_name: errorpage
+    restart: unless-stopped
+    volumes:
+      - ./errorpage/index.html:/usr/share/nginx/html/index.html:ro
+      - ./errorpage/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - proxy
 
 volumes:
   letsencrypt:

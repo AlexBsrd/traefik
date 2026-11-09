@@ -1,0 +1,12 @@
+# Middlewares appliqués à tous les sites via le point d'entrée websecure (voir docker-compose.yml).
+# Pas de CSP ni de includeSubDomains : à régler site par site si besoin.
+http:
+  middlewares:
+    security-headers:
+      headers:
+        stsSeconds: 31536000
+        contentTypeNosniff: true
+        referrerPolicy: strict-origin-when-cross-origin
+        customFrameOptionsValue: SAMEORIGIN
+    compress:
+      compress: {}

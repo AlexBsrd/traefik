@@ -1,0 +1,26 @@
+# Page "site indisponible" :
+# - route attrape-tout (priorité minimale) : sert les domaines sans route, par ex. un conteneur arrêté ;
+# - middleware errorpages : remplace les 502/504 des sites (conteneur injoignable ou trop lent).
+# ponytail: 503 volontairement exclu, une appli peut renvoyer son propre 503 (API, maintenance).
+http:
+  routers:
+    catchall:
+      rule: "HostRegexp(`.+`)"
+      priority: 1
+      entryPoints:
+        - websecure
+      tls: {}
+      service: errorpage
+  services:
+    errorpage:
+      loadBalancer:
+        servers:
+          - url: "http://errorpage:80"
+  middlewares:
+    errorpages:
+      errors:
+        status:
+          - "502"
+          - "504"
+        service: errorpage
+        query: "/"
